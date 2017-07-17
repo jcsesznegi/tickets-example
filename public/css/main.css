@@ -1,0 +1,16 @@
+
+ul li {
+
+}
+.completed {
+	text-decoration: line-through;
+}
+.low {
+	color: green;
+}
+.medium {
+	color: yellow;
+}
+.high {
+	color: red;
+}

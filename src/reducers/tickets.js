@@ -6,6 +6,7 @@ const tickets = (state = [], action) => {
         {
           id: action.id,
           text: action.text,
+          priority: action.priority,
           completed: false
         }
       ];

@@ -1,8 +1,9 @@
 let nextTicketId = 0;
-export const addTicket = (text) => ({
+export const addTicket = (text, priority) => ({
   type: 'ADD_TICKET',
   id: nextTicketId++,
-  text
+  text,
+  priority
 });
 
 export const setVisibilityFilter = (filter) => ({
