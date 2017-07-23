@@ -4,9 +4,10 @@ const tickets = (state = [], action) => {
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
-          priority: action.priority,
+          id:        action.id,
+          title:     action.title,
+          text:      action.text,
+          priority:  action.priority,
           completed: false
         }
       ];

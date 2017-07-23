@@ -1,7 +1,8 @@
-let nextTicketId = 0;
-export const addTicket = (text, priority) => ({
+let nextTicketId = 1;
+export const addTicket = (title, text, priority) => ({
   type: 'ADD_TICKET',
   id: nextTicketId++,
+  title,
   text,
   priority
 });

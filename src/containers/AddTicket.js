@@ -3,26 +3,30 @@ import { connect } from 'react-redux';
 import { addTicket } from '../actions';
 
 let AddTicket = ({ dispatch }) => {
-  let input, select;
+  let titleInput, textInput, prioritySelect;
 
   return (
     <div>
       <form onSubmit={e => {
         e.preventDefault();
-        if (!input.value.trim() 
-		|| parseInt(select.value) <= 0
+        if (!textInput.value.trim() 
+		|| parseInt(prioritySelect.value) <= 0
 	) {
           return;
         }
-        dispatch(addTicket(input.value, parseInt(select.value)));
-        input.value = '';
-        select.value = '';
+        dispatch(addTicket(titleInput.value, textInput.value, parseInt(prioritySelect.value)));
+        titleInput.value = '';
+        textInput.value = '';
+        prioritySelect.value = '';
       }}>
         <input ref={node => {
-          input = node;
+          titleInput = node;
+        }} />
+        <textarea ref={node => {
+          textInput = node;
         }} />
         <select ref={node => {
-          select = node;
+          prioritySelect = node;
         }}>
 		<option value="">Priority</option>
 		<option value="1">Low</option>

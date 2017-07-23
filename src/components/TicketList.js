@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Ticket from './Ticket';
+import TicketListItem from './TicketListItem';
 
 const TicketList = ({ tickets, onTicketClick }) => (
   <ul>
     {tickets.map(ticket =>
-      <Ticket
+      <TicketListItem
         key={ticket.id}
         {...ticket}
         onClick={() => onTicketClick(ticket.id)}

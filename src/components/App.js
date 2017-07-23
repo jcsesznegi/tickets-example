@@ -1,12 +1,17 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Header from './Header';
 import Footer from './Footer';
-import AddTicket from '../containers/AddTicket';
-import VisibleTicketList from '../containers/VisibleTicketList';
+import Home from './Home';
+import Ticket from '../containers/Ticket';
 
 const App = () => (
   <div>
-    <AddTicket />
-    <VisibleTicketList />
+    <Header />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/ticket/:id" component={Ticket} />
+    </Switch>
     <Footer />
   </div>
 );

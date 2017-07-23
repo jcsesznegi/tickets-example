@@ -1,21 +1,8 @@
 import React from 'react';
-import FilterLink from '../containers/FilterLink';
 
 const Footer = () => (
-  <p>
-    Show:
-    {" "}
-    <FilterLink filter="SHOW_ALL">
-      All
-    </FilterLink>
-    {", "}
-    <FilterLink filter="SHOW_ACTIVE">
-      Active
-    </FilterLink>
-    {", "}
-    <FilterLink filter="SHOW_COMPLETED">
-      Completed
-    </FilterLink>
-  </p>
+  <div>
+    Powered by <a href="/">Bluemine</a> &copy; 2017 Jason Csesznegi
+  </div>
 );
 export default Footer;
