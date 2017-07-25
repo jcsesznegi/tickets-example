@@ -1,6 +1,8 @@
+import * as types from '../constants/ActionTypes/index';
+
 let nextTicketId = 1;
 export const addTicket = (title, text, priority) => ({
-  type: 'ADD_TICKET',
+  type: types.ADD_TICKET,
   id: nextTicketId++,
   title,
   text,
@@ -8,11 +10,11 @@ export const addTicket = (title, text, priority) => ({
 });
 
 export const setVisibilityFilter = (filter) => ({
-  type: 'SET_VISIBILITY_FILTER',
+  type: types.SET_VISIBILITY_FILTER,
   filter
 });
 
 export const toggleTicket = (id) => ({
-  type: 'TOGGLE_TICKET',
+  type: types.TOGGLE_TICKET,
   id
 });

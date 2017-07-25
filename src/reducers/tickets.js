@@ -1,6 +1,8 @@
+import * as types from '../constants/ActionTypes/index';
+
 const tickets = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_TICKET':
+    case types.ADD_TICKET:
       return [
         ...state,
         {
@@ -11,7 +13,7 @@ const tickets = (state = [], action) => {
           completed: false
         }
       ];
-    case 'TOGGLE_TICKET':
+    case types.TOGGLE_TICKET:
       return state.map(ticket =>
         (ticket.id === action.id) 
           ? {...ticket, completed: !ticket.completed}
