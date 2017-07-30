@@ -1,10 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
-import reducer from './reducers';
+import { Map } from 'immutable';
+import ticketApp from './reducers/index';
 import Root from './components/Root';
 
-const store = createStore(reducer);
+const initialState = Map();
+const store = createStore(ticketApp, initialState);
 
 render(
   <Root store={store} />,

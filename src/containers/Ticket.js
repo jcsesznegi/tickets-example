@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TicketDetail from '../components/TicketDetail';
 
 const getTicket = (tickets, id) => {
-  let ticket = {}
+  let ticket = {};
   tickets.map(t => {
     if (t.id == id) {
       ticket = t;
