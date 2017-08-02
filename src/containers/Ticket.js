@@ -12,7 +12,7 @@ const getTicket = (tickets, id) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  ticket: getTicket(state.tickets, ownProps.match.params.id)
+  ticket: getTicket(state.get('tickets'), ownProps.match.params.id)
 });
 
 const mapDispatchToProps = {};

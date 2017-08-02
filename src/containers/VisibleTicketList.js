@@ -15,9 +15,10 @@ const getVisibleTickets = (tickets, filter) => {
   }
 }
 
-const mapStateToProps = (state) => ({
-  tickets: getVisibleTickets(state.tickets, state.visibilityFilter)
-});
+const mapStateToProps = (state) => { 
+return {
+  tickets: getVisibleTickets(state.get('tickets'), state.get('visibilityFilter'))
+}};
 
 const mapDispatchToProps = {
   onTicketClick: toggleTicket
