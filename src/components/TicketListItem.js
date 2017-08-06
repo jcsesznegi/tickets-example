@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -21,7 +20,7 @@ const TicketListItem = ({ onClick, id, completed, title, priority }) => {
 	}
 	return (
 	  <li
-//	    onClick={onClick}
+	    onClick={onClick}
 	    className={ticketClass}
 	  >
 	    <Link to={'/ticket/'+id}>#{id} {title}</Link>

@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TicketListItem from './TicketListItem';
 
-const TicketList = ({ tickets, onTicketClick }) => (
-  <ul>
-    {tickets.map(ticket =>
-      <TicketListItem
-        key={ticket.id}
-        {...ticket}
-        onClick={() => onTicketClick(ticket.id)}
-      />
-    )}
-  </ul>
-);
+const TicketList = ({ tickets, onTicketClick }) => {
+  return (
+    <ul>
+      {tickets.map(ticket =>
+        <TicketListItem
+          key={ticket.id}
+          {...ticket}
+          onClick={() => onTicketClick(ticket.id)}
+        />
+      )}
+    </ul>
+  );
+}
 
 TicketList.propTypes = {
   tickets: PropTypes.arrayOf(PropTypes.shape({

@@ -12,14 +12,13 @@ const tickets = (state = List(), action) => {
         priority:  action.priority,
         completed: false
       });
-      return state.insert(t);
+      return state.push(t);
     case types.TOGGLE_TICKET:
-      // TODO: change to use immutable state
-      return state.map(ticket =>
-        (ticket.id === action.id) 
-          ? {...ticket, completed: !ticket.completed}
-          : ticket
-      );
+      return state.map(ticket => {
+        return ((ticket.get('id') === action.id) 
+          ? ticket.set('completed', !ticket.get('completed'))
+          : ticket);
+      });
     default:
       return state;
   }

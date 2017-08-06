@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
+import { ToJS } from './ToJS'
 import TicketDetail from '../components/TicketDetail';
 
 const getTicket = (tickets, id) => {
-  let ticket = {};
+  let ticket;
   tickets.map(t => {
-    if (t.id == id) {
+    if (t.get('id') == id) {
       ticket = t;
     }
   });
@@ -20,6 +21,6 @@ const mapDispatchToProps = {};
 const Ticket = connect(
   mapStateToProps,
   mapDispatchToProps
-)(TicketDetail);
+)(ToJS(TicketDetail));
 
 export default Ticket;
