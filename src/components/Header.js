@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Header = () => (
-  <div>
-    Bluemine
+  <div className="header">
+    <div className="headerTitle">Bluemine</div>
   </div>
 );
 export default Header;

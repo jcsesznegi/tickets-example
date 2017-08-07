@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function renderTicketDetails(ticket) {
   if ( ticket ) {
     return (
-      <div>
+      <div className="page">
         <h1>#{ticket.id} {ticket.title}</h1>
         <div>{ticket.text}</div>
         <div>Priority: {ticket.priority}</div>

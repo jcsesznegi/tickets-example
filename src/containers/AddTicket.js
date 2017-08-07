@@ -6,7 +6,7 @@ let AddTicket = ({ dispatch }) => {
   let titleInput, textInput, prioritySelect;
 
   return (
-    <div>
+    <div className="box">
       <form onSubmit={e => {
         e.preventDefault();
         if (!textInput.value.trim() 

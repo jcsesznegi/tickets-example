@@ -6,7 +6,7 @@ import Home from './Home';
 import Ticket from '../containers/Ticket';
 
 const App = () => (
-  <div>
+  <div className="pageContainer">
     <Header />
     <Switch>
       <Route exact path="/" component={Home} />

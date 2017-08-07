@@ -4,7 +4,8 @@ import AddTicket from '../containers/AddTicket';
 import VisibleTicketList from '../containers/VisibleTicketList';
 
 const Home = () => (
-  <div>
+  <div className="page">
+    <h1>チケット</h1>
     <AddTicket />
     <VisibleTicketList />
     <TicketListControls />
