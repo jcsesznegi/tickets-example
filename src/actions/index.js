@@ -1,6 +1,7 @@
 import * as types from '../constants/ActionTypes/index';
+import initialTickets from '../data/initialState';
 
-let nextTicketId = 1;
+let nextTicketId = initialTickets.size + 1;
 export const addTicket = (title, text, priority) => ({
   type: types.ADD_TICKET,
   id: nextTicketId++,

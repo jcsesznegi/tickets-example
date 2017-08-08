@@ -6,11 +6,11 @@ const tickets = (state = List(), action) => {
   switch (action.type) {
     case types.ADD_TICKET:
       const t = new Ticket({
-        id:        action.id,
-        title:     action.title,
-        text:      action.text,
-        priority:  action.priority,
-        completed: false
+        id        : action.id,
+        title     : action.title,
+        text      : action.text,
+        priority  : action.priority,
+        completed : false
       });
       return state.push(t);
     case types.TOGGLE_TICKET:
