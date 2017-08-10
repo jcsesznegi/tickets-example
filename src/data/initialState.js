@@ -1,44 +1,24 @@
 import { List } from 'immutable';
 import Ticket from '../models/Ticket';
 
-const ticketData = [
-  {
-    id        : 1,
-    title     : 'test title',
-    text      : 'test text',
-    priority  : 1,
-    completed : false
-  },
-  {
-    id        : 2,
-    title     : 'test title',
-    text      : 'test text',
-    priority  : 1,
-    completed : false
-  },
-  {
-    id        : 3,
-    title     : 'test title',
-    text      : 'test text',
-    priority  : 1,
-    completed : false
-  },
-  {
-    id        : 4,
-    title     : 'test title',
-    text      : 'test text',
-    priority  : 1,
-    completed : false
-  },
-  {
-    id        : 5,
-    title     : 'test title',
-    text      : 'test text',
-    priority  : 1,
-    completed : false
-  },
+const ticketData = [];
 
-];
+let limit    = 10;
+let ticketId = 1;
+for (var i=0; i<limit; i++) {
+  ticketData.push(
+    {
+      id        : ticketId,
+      title     : 'サンプルチケット',
+      text      : `チチケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容ケット内容
+      
+チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容`,
+      priority  : Math.floor((Math.random() * 3) + 1),
+      completed : false
+    }
+  );
+  ticketId++;
+}
 
 let initialTickets = List();
 ticketData.forEach((d) => {

@@ -6,7 +6,7 @@ let AddTicket = ({ dispatch }) => {
   let titleInput, textInput, prioritySelect;
 
   return (
-    <div className="box">
+    <div className="box addTicket">
       <form onSubmit={e => {
         e.preventDefault();
         if (!textInput.value.trim() 
@@ -19,23 +19,34 @@ let AddTicket = ({ dispatch }) => {
         textInput.value = '';
         prioritySelect.value = '';
       }}>
-        <input ref={node => {
-          titleInput = node;
-        }} />
-        <textarea ref={node => {
-          textInput = node;
-        }} />
-        <select ref={node => {
-          prioritySelect = node;
-        }}>
-		<option value="">Priority</option>
-		<option value="1">Low</option>
-		<option value="2">Medium</option>
-		<option value="3">High</option>
-	</select>
-        <button type="submit">
-          Add Ticket
-        </button>
+        <div>
+          <label>題名</label>
+          <input size={60} ref={node => {
+            titleInput = node;
+          }} />
+        </div>
+	<div>
+	  <label>説明</label>
+          <textarea cols={60} rows={10} ref={node => {
+            textInput = node;
+          }} />
+	</div>
+	<div>
+	  <label>優先度</label>
+          <select ref={node => {
+            prioritySelect = node;
+          }}>
+            <option value="">Priority</option>
+	    <option value="1">Low</option>
+	    <option value="2">Medium</option>
+	    <option value="3">High</option>
+	  </select>
+	</div>
+	<div>
+          <button type="submit">
+            Add Ticket
+          </button>
+	</div>
       </form>
     </div>
   );

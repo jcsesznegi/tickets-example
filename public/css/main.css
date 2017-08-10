@@ -51,6 +51,27 @@ h1, h2, h3 {
   border: 1px solid #e4e4e4;
 }
 
+.addTicket textarea {
+  resize: none;
+}
+
+.addTicket button {
+  margin-left: 185px;
+}
+
+.addTicket div {
+  margin-bottom: 6px;
+}
+
+.addTicket label {
+  display: inline-block;
+  font-weight: bold;
+  min-width: 175px;
+  padding-right: 10px;
+  text-align: right;
+  vertical-align: top;
+}
+
 ul li {
 
 }
