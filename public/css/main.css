@@ -8,6 +8,15 @@ body {
   padding: 0;
 }
 
+a:link, a:visited {
+  color: #169;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .pageContainer {
   width: 100%;
 }
@@ -72,18 +81,76 @@ h1, h2, h3 {
   vertical-align: top;
 }
 
-ul li {
+.addTicket, .ticketControls {
+  margin-bottom: 15px;
+}
+
+.ticketControls {
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  font-size: 90%;
+  padding: 15px;
+  position: relative;
+}
+
+.ticketControls label {
+  background-color: #fff;
+  height: 20px;
+  left: 20px;
+  line-height: 20px;
+  margin-top: -10px;
+  padding: 0 3px;
+  position: absolute;
+  top: 0;
 
 }
-.completed {
-	text-decoration: line-through;
+
+.ticketList {
+  border: 1px solid #e4e4e4;
+  border-collapse: collapse;
+  font-size: 90%;
+  width: 600px;
 }
-.low {
-	color: green;
+
+.ticketList th {
+  background-color: #eee;
 }
-.medium {
-	color: yellow;
+
+.ticketList tr {
+  background-color: #f6f7f8;
 }
-.high {
-	color: red;
+
+.ticketList tr:hover {
+  background-color: #ffffdd !important;
+}
+
+.ticketList tr.even {
+  background-color: #fff;
+}
+
+.ticketList .id,
+.ticketList .status,
+.ticketList .priority {
+  text-align: center;
+}
+
+.ticketList .id,
+.ticketList .priority {
+  width: 50px;
+}
+
+.ticketList .status {
+  width: 150px;
+}
+
+.ticketBox {
+  background-color: #ffffdd;
+  border: 1px solid #d7d7d7;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.ticketBox h1 {
+  font-size: 200%;
+  margin: 0 0 15px 0;
 }

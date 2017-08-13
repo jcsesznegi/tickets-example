@@ -3,7 +3,7 @@ import Ticket from '../models/Ticket';
 
 const ticketData = [];
 
-let limit    = 10;
+let limit    = 30;
 let ticketId = 1;
 for (var i=0; i<limit; i++) {
   ticketData.push(
@@ -14,7 +14,7 @@ for (var i=0; i<limit; i++) {
       
 チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容チケット内容`,
       priority  : Math.floor((Math.random() * 3) + 1),
-      completed : false
+      completed : Math.random() >= 0.5
     }
   );
   ticketId++;

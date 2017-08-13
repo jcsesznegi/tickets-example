@@ -23,11 +23,11 @@ function renderTicketText(text) {
 function renderTicketDetails(ticket) {
   if ( ticket ) {
     return (
-      <div className="page">
+      <div className="ticketBox">
         <h1>#{ticket.id} {ticket.title}</h1>
-        <div>{renderTicketText(ticket.text)}</div>
         <div>Priority: {ticket.priority}</div>
         <div>Completed: {ticket.completed ? 'true' : 'false' }</div>
+        <div>{renderTicketText(ticket.text)}</div>
       </div>
     );
   }
@@ -36,7 +36,7 @@ function renderTicketDetails(ticket) {
 
 const TicketDetail = ({ ticket }) => {
   return (
-    <div>
+    <div className="page">
       {renderTicketDetails(ticket)}
       <div>
         <Link to={'/'}>Home</Link>

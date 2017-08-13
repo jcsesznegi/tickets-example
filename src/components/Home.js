@@ -7,8 +7,8 @@ const Home = () => (
   <div className="page">
     <h1>チケット</h1>
     <AddTicket />
-    <VisibleTicketList />
     <TicketListControls />
+    <VisibleTicketList />
   </div>
 );
 export default Home;

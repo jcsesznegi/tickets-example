@@ -3,16 +3,24 @@ import PropTypes from 'prop-types';
 import TicketListItem from './TicketListItem';
 
 const TicketList = ({ tickets, onTicketClick }) => {
+  let ticketCounter = 0;
   return (
-    <ul>
+    <table className="ticketList">
+      <tr>
+        <th>#</th>
+        <th>Status</th>
+        <th>Subject</th>
+        <th>Priority</th>
+      </tr>
       {tickets.map(ticket =>
         <TicketListItem
           key={ticket.id}
+          even={ticketCounter++%2==0 ? true : false }
           {...ticket}
           onClick={() => onTicketClick(ticket.id)}
         />
       )}
-    </ul>
+    </table>
   );
 }
 

@@ -2,7 +2,8 @@ import React from 'react';
 import FilterLink from '../containers/FilterLink';
 
 const TicketListControls = () => (
-  <p>
+  <div className="ticketControls">
+    <label>Filters</label>
     Show:
     {" "}
     <FilterLink filter="SHOW_ALL">
@@ -16,6 +17,6 @@ const TicketListControls = () => (
     <FilterLink filter="SHOW_COMPLETED">
       Completed
     </FilterLink>
-  </p>
+  </div>
 );
 export default TicketListControls;

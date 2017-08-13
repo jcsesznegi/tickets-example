@@ -8,7 +8,7 @@ import initialTickets from './data/initialState';
 
 const initialState = Map({
   tickets : initialTickets,
-  visibilityFilter : 'SHOW_ALL'
+  visibilityFilter : 'SHOW_ACTIVE'
 });
 const store = createStore(ticketApp, initialState);
 
