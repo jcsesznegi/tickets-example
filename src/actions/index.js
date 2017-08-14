@@ -10,6 +10,11 @@ export const addTicket = (title, text, priority) => ({
   priority
 });
 
+export const deleteTicket = (id) => ({
+  type: types.DELETE_TICKET,
+  id
+});
+
 export const setVisibilityFilter = (filter) => ({
   type: types.SET_VISIBILITY_FILTER,
   filter

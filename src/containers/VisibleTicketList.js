@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { toggleTicket } from '../actions';
 import { ToJS } from './ToJS'
 import TicketList from '../components/TicketList';
 
@@ -22,9 +21,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-const mapDispatchToProps = {
-  onTicketClick: toggleTicket
-}
+const mapDispatchToProps = {}
 
 const VisibleTicketList = connect(
   mapStateToProps,

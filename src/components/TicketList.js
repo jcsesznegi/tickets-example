@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TicketListItem from './TicketListItem';
 
-const TicketList = ({ tickets, onTicketClick }) => {
+const TicketList = ({ tickets }) => {
   let ticketCounter = 0;
   return (
     <table className="ticketList">
@@ -17,7 +17,6 @@ const TicketList = ({ tickets, onTicketClick }) => {
           key={ticket.id}
           even={ticketCounter++%2==0 ? true : false }
           {...ticket}
-          onClick={() => onTicketClick(ticket.id)}
         />
       )}
     </table>
@@ -30,8 +29,7 @@ TicketList.propTypes = {
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
     priority: PropTypes.number.isRequired
-  }).isRequired).isRequired,
-  onTicketClick: PropTypes.func.isRequired
+  }).isRequired).isRequired
 }
 
 export default TicketList;

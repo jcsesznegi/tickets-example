@@ -150,6 +150,27 @@ h1, h2, h3 {
   padding: 10px;
 }
 
+.ticketBox .details {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.ticketBox table {
+  border-collapse: collapse;
+  width: 50%
+}
+
+.ticketBox th, ticketBox td {
+  padding: 3px 0;
+  width: 50%;
+}
+
+.ticketBox th {
+  font-weight: bold;
+  text-align: left;
+}
+
 .ticketBox h1 {
   font-size: 200%;
   margin: 0 0 15px 0;

@@ -20,13 +20,26 @@ function renderTicketText(text) {
   });
 }
 
-function renderTicketDetails(ticket) {
+function renderTicketDetails(ticket, onDeleteClick) {
   if ( ticket ) {
     return (
       <div className="ticketBox">
+	<button onClick={(e)=>{onDeleteClick();}}>
+		Delete
+	</button>
         <h1>#{ticket.id} {ticket.title}</h1>
-        <div>Priority: {ticket.priority}</div>
-        <div>Completed: {ticket.completed ? 'true' : 'false' }</div>
+        <div className="details">
+	  <table>
+	    <tr>
+	      <th>Priority:</th>
+	      <td>{ticket.priority}</td>
+	    </tr>
+	    <tr>
+	      <th>Resolved:</th>
+	      <td>{ticket.completed ? 'true' : 'false' }</td>
+	    </tr>
+	  </table> 
+	</div>
         <div>{renderTicketText(ticket.text)}</div>
       </div>
     );
@@ -34,10 +47,10 @@ function renderTicketDetails(ticket) {
   return null;
 }
 
-const TicketDetail = ({ ticket }) => {
+const TicketDetail = ({ ticket, onDeleteClick }) => {
   return (
     <div className="page">
-      {renderTicketDetails(ticket)}
+      {renderTicketDetails(ticket, onDeleteClick)}
       <div>
         <Link to={'/'}>Home</Link>
       </div>

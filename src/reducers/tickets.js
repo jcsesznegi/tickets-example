@@ -13,6 +13,14 @@ const tickets = (state = List(), action) => {
         completed : false
       });
       return state.push(t);
+    case types.DELETE_TICKET:
+      const ticketFilter = (t) => {
+        return t.get('id') === action.id;
+      } 
+      if (state.some(ticketFilter)) {
+        return state.filterNot(ticketFilter);
+      }
+      return state;
     case types.TOGGLE_TICKET:
       return state.map(ticket => {
         return ((ticket.get('id') === action.id) 
