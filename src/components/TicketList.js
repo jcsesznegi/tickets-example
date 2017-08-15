@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TicketListItem from './TicketListItem';
 
 const TicketList = ({ tickets }) => {
+  const ticketsReverse = tickets.reverse();
   let ticketCounter = 0;
   return (
     <table className="ticketList">
@@ -12,7 +13,7 @@ const TicketList = ({ tickets }) => {
         <th>Subject</th>
         <th>Priority</th>
       </tr>
-      {tickets.map(ticket =>
+      {ticketsReverse.map(ticket =>
         <TicketListItem
           key={ticket.id}
           even={ticketCounter++%2==0 ? true : false }

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
   <div className="header">
-    <div className="headerTitle">Bluemine</div>
+    <div className="headerTitle"><Link to={'/'}>Bluemine</Link></div>
   </div>
 );
 export default Header;

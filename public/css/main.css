@@ -39,6 +39,13 @@ a:hover {
   font-weight: bold;
 }
 
+.headerTitle a:link, 
+.headerTitle a:hover, 
+.headerTitle a:visited {
+  color: #fff;
+  text-decoration: none !important;
+}
+
 .footer {
   border-top: 1px solid #bbb;
   color: #aaa;
@@ -148,6 +155,16 @@ h1, h2, h3 {
   border: 1px solid #d7d7d7;
   margin-bottom: 15px;
   padding: 10px;
+  position: relative;
+}
+
+.ticketBox button {
+  position: absolute;
+  top: 10px;
+}
+
+.ticketBox button.delete {
+  right: 10px;
 }
 
 .ticketBox .details {
