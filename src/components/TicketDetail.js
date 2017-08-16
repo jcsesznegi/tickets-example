@@ -9,6 +9,12 @@ class TicketDetail extends React.Component {
     }
   }
 
+  handleUpdateClick(id) {
+    if (id) {
+      this.props.history.push('/ticket/'+id+'/edit');
+    }
+  }
+
   nl2br(text) {
     if (!text) {
       return;
@@ -33,6 +39,13 @@ class TicketDetail extends React.Component {
     if ( ticket ) {
       return (
         <div className="ticketBox">
+ 	  <button className="update" onClick={
+    	    (e)=>{
+	        this.handleUpdateClick(ticket.id);
+	    }
+	  }>
+	    Update
+	  </button>
   	  <button className="delete" onClick={
     	    (e)=>{
 	      if(window.confirm("本当にチケットを削除しますか？")) {

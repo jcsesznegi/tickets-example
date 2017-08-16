@@ -13,6 +13,17 @@ const tickets = (state = List(), action) => {
         completed : false
       });
       return state.push(t);
+    case types.UPDATE_TICKET:
+      return state.map(ticket => {
+        if (ticket.get('id') === action.id) {
+	  return ticket.withMutations((t)=>{
+            return t.set('title', action.title)
+	      .set('text', action.text)
+	      .set('priority', action.priority);
+	  });
+	}
+	return ticket;
+      });
     case types.DELETE_TICKET:
       const ticketFilter = (t) => {
         return t.get('id') === action.id;

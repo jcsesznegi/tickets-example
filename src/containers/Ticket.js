@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { ToJS } from './ToJS'
 import TicketDetail from '../components/TicketDetail';
 import { deleteTicket, toggleTicket } from '../actions/index';
