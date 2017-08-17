@@ -36,6 +36,20 @@ class TicketDetail extends React.Component {
   renderTicketDetails() {
     const ticket        = this.props.ticket;
     const onDeleteClick = this.props.onDeleteClick;
+    let priorityText    = '';
+    switch(ticket.priority) {
+       case 1:
+         priorityText = 'Low';
+	 break;
+       case 2:
+         priorityText = 'Medium';
+	 break;
+       case 3:
+         priorityText = 'High';
+	 break;
+       default:
+         break;
+    }
     if ( ticket ) {
       return (
         <div className="ticketBox">
@@ -60,7 +74,7 @@ class TicketDetail extends React.Component {
 	    <table>
 	      <tr>
 	        <th>Priority:</th>
-	        <td>{ticket.priority}</td>
+	        <td>{priorityText}</td>
 	      </tr>
 	      <tr>
 	        <th>Resolved:</th>

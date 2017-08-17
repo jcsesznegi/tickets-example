@@ -163,8 +163,13 @@ h1, h2, h3 {
   top: 10px;
 }
 
-.ticketBox button.delete {
+.ticketBox button.delete,
+.ticketBox button.save {
   right: 10px;
+}
+
+.ticketBox button.update {
+  right: 70px;
 }
 
 .ticketBox .details {

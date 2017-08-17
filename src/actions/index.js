@@ -10,12 +10,13 @@ export const addTicket = (title, text, priority) => ({
   priority
 });
 
-export const updateTicket = (id, title, text, priority) => ({
+export const updateTicket = (id, title, text, priority, completed) => ({
   type: types.UPDATE_TICKET,
   id,
   title,
   text,
-  priority
+  priority,
+  completed
 });
 
 export const deleteTicket = (id) => ({

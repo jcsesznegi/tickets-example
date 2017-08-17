@@ -19,7 +19,8 @@ const tickets = (state = List(), action) => {
 	  return ticket.withMutations((t)=>{
             return t.set('title', action.title)
 	      .set('text', action.text)
-	      .set('priority', action.priority);
+	      .set('priority', action.priority)
+	      .set('completed', action.completed);
 	  });
 	}
 	return ticket;

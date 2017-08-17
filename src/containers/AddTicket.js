@@ -10,11 +10,11 @@ let AddTicket = ({ dispatch }) => {
       <form onSubmit={e => {
         e.preventDefault();
         if (!textInput.value.trim() 
-		|| parseInt(prioritySelect.value) <= 0
+		|| parseInt(prioritySelect.value, 10) <= 0
 	) {
           return;
         }
-        dispatch(addTicket(titleInput.value, textInput.value, parseInt(prioritySelect.value)));
+        dispatch(addTicket(titleInput.value, textInput.value, parseInt(prioritySelect.value, 10)));
         titleInput.value = '';
         textInput.value = '';
         prioritySelect.value = '';
