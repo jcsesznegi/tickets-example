@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const getTicket = (tickets, id) => {
   let ticket;
   tickets.map(t => {
-    if (t.get('id') == id) {
+    if (t.get('id') === id) {
       ticket = t;
     }
   });
@@ -15,7 +15,7 @@ const getTicket = (tickets, id) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  ticket: getTicket(state.get('tickets'), ownProps.match.params.id)
+  ticket: getTicket(state.get('tickets'), parseInt(ownProps.match.params.id, 10))
 });
 
 
@@ -38,7 +38,7 @@ class TicketForm extends React.Component {
             ) {
               return;
             }
-            dispatch(updateTicket(ticket.id, titleInput.value, textInput.value, parseInt(prioritySelect.value, 10)), Boolean(completedSelect.value));
+            dispatch(updateTicket(ticket.id, titleInput.value, textInput.value, parseInt(prioritySelect.value, 10), Boolean(completedSelect.value)));
           }}>
             <h1>
 	      #{ticket.id}
@@ -51,35 +51,37 @@ class TicketForm extends React.Component {
 	    </h1>
             <div className="details">
               <table>
-                <tr>
-                  <th>Priority:</th>
-                  <td>
-		    <select
-		      ref={node => {
-                        prioritySelect = node;
-                      }}
-                      defaultValue={ticket.priority}
-		    >
-                      <option value="1">Low</option>
-                      <option value="2">Medium</option>
-                      <option value="3">High</option>
-                    </select>
-		  </td>
-                </tr>
-                <tr>
-                  <th>Resolved:</th>
-                  <td>
-		    <select
-		      ref={node => {
-                        completedSelect = node;
-                      }}
-                      defaultValue={ticket.completed}
-		    >
-                      <option value="false">false</option>
-                      <option value="true">true</option>
-                    </select>
-		  </td>
-                </tr>
+	        <tbody>
+                  <tr>
+                    <th>Priority:</th>
+                    <td>
+	              <select
+	                ref={node => {
+                          prioritySelect = node;
+                        }}
+                        defaultValue={ticket.priority}
+	              >
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                      </select>
+	            </td>
+                  </tr>
+                  <tr>
+                    <th>Resolved:</th>
+                    <td>
+	              <select
+	                ref={node => {
+                          completedSelect = node;
+                        }}
+                        defaultValue={ticket.completed}
+	              >
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                      </select>
+	            </td>
+                  </tr>
+		</tbody>
               </table> 
             </div>
             <div>

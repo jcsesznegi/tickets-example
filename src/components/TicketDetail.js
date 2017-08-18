@@ -23,9 +23,9 @@ class TicketDetail extends React.Component {
   }
 
   renderTicketText(text) {
-    return text.split('\n').map((item) => {
+    return text.split('\n').map((item, index) => {
       return (
-        <span>
+        <span key={index}>
           {item}
           <br />
         </span>
@@ -36,21 +36,21 @@ class TicketDetail extends React.Component {
   renderTicketDetails() {
     const ticket        = this.props.ticket;
     const onDeleteClick = this.props.onDeleteClick;
-    let priorityText    = '';
-    switch(ticket.priority) {
-       case 1:
-         priorityText = 'Low';
-	 break;
-       case 2:
-         priorityText = 'Medium';
-	 break;
-       case 3:
-         priorityText = 'High';
-	 break;
-       default:
-         break;
-    }
     if ( ticket ) {
+      let priorityText = '';
+      switch(ticket.priority) {
+         case 1:
+           priorityText = 'Low';
+           break;
+         case 2:
+           priorityText = 'Medium';
+           break;
+         case 3:
+           priorityText = 'High';
+           break;
+         default:
+           break;
+      }
       return (
         <div className="ticketBox">
  	  <button className="update" onClick={
@@ -72,14 +72,16 @@ class TicketDetail extends React.Component {
           <h1>#{ticket.id} {ticket.title}</h1>
           <div className="details">
 	    <table>
-	      <tr>
-	        <th>Priority:</th>
-	        <td>{priorityText}</td>
-	      </tr>
-	      <tr>
-	        <th>Resolved:</th>
-	        <td>{ticket.completed ? 'true' : 'false' }</td>
-	      </tr>
+	      <tbody>
+	        <tr>
+	          <th>Priority:</th>
+	          <td>{priorityText}</td>
+	        </tr>
+	        <tr>
+	          <th>Resolved:</th>
+	          <td>{ticket.completed ? 'true' : 'false' }</td>
+	        </tr>
+	      </tbody>
 	    </table> 
   	  </div>
           <div>{this.renderTicketText(ticket.text)}</div>
@@ -100,5 +102,14 @@ class TicketDetail extends React.Component {
     );
   }
 };
+
+TicketDetail.propTypes = {
+  ticket: PropTypes.shape({
+    id:          PropTypes.number.isRequired,
+    completed:   PropTypes.bool.isRequired,
+    text:        PropTypes.string.isRequired,
+    priority:    PropTypes.number.isRequired
+  })
+}
 
 export default TicketDetail;

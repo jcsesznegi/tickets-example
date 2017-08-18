@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { ToJS } from './ToJS'
 import TicketDetail from '../components/TicketDetail';
-import { deleteTicket, toggleTicket } from '../actions/index';
+import { deleteTicket } from '../actions/index';
 
 const getTicket = (tickets, id) => {
   let ticket;
   tickets.map(t => {
-    if (t.get('id') == id) {
+    if (t.get('id') === id) {
       ticket = t;
     }
   });
@@ -14,7 +14,7 @@ const getTicket = (tickets, id) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  ticket: getTicket(state.get('tickets'), ownProps.match.params.id)
+  ticket: getTicket(state.get('tickets'), parseInt(ownProps.match.params.id, 10))
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

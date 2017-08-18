@@ -21,6 +21,8 @@ const TicketListItem = ({ id, completed, title, priority, even }) => {
       ticketClass += 'high ';
       priorityText = '高'; 
       break;
+    default:
+      break;
   }
   if (even) {
     ticketClass += 'even';
