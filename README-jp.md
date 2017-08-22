@@ -50,32 +50,65 @@ npm start
 
 * 値が変わらないこと（イミュータブル）
 * 徹底的なAPIを揃えている
-  * `List`、 `Map`、 `Record`、など
+  * `List`、 `Map`、 `Record`、オブジェクトタイプがある
+  * オブジェクトの深いネスティングのデータを更新するための便利な機能がある
+```
+[SOME_ACTION]: (state, action) => 
+  state
+    .set('loading', false)
+    .setIn(['down', 'we', 'go'], action.payload.id)
+    .setIn(['this', 'is', 'easy'], action.payload.response),
+```
 * パフォーマンスが良い
+* ステートの変更が簡単にわかることができます。
+```
+oldObjectImmutable !== newObjectImmutable
+```
+* 下記のような不要なコピーが必要なくなります：
+```
+newState = Object.assign({}, oldState, { newThing: true });
+```
 
 ## Immutable.JSを使うの弱点
 
-* 習う、利用するのは難しいDifficult to interoperate with
+* 習う、利用するのは難しい
   * dataには普通のJSメソッドを使わなくなってしまう
   * シンタックスが違う
   * ES6の`destructuring`、`spread operators`を使わなくなる
+```
+myObj.prop1.prop2.prop3
+
+myImmutableMap.getIn([‘prop1’, ‘prop2’, ‘prop3’])
+```
 * Immutable.JSを使うと、コードのどこでも使わないといけなくなります。
 * シンプルな値、または良く変わる値には適当ではありません。例：
   * Strings
   * Numbers
   * Bools
-* デバグするのは難しい
-* Breaks object references, causing poor performance
+* デバグするのは難しいので、`Immutable.js Object Formatter`をご利用:
+https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog
+* `toJS()`を利用すれば、よりパーフォマンスが低い
+```
+// mapStateToPropsに.toJS()を使わない
+function mapStateToProps(state) {
+  return {
+    todos: state.get('todos').toJS() // いつも新オブジェクト
+  }
+}
+```
 * `combineReducers`は普通のオブジェクトを期待しているので、ステート全体をImmutable.jsにする(Map()にする)と`combineReducers`を使えなってしまう。 `redux-immutable`を使わなければなりません:
 https://www.npmjs.com/package/redux-immutable#usage
 * もしstoreはImmutable.JSのオブジェクトにすると、`react-router-redux`を使えなく、 カスタムのreducerをつかなければなりません：
 https://www.npmjs.com/package/redux-immutable#using-with-react-router-redux
 
+## そんなに弱点があればImmutable.JSを使う必要はある！？
+
+Yes! ステートが変更される問題は非常にデバグしにくいので、弱点があってもImmutable.JSを使うのは推薦されています。
+
 ## ベストプラクティス（Reduxサイトにより）
 http://redux.js.org/docs/recipes/UsingImmutableJS.html
 
-* Immutable.JSのオブジェクトと普通のJSオブジェクトを混ぜない方が良い（例：Immutable.JSのMapに、普通のJS
-オブジェクトを挿入するとか）
+* Immutable.JSのオブジェクトと普通のJSオブジェクトを混ぜない方が良い（例：Immutable.JSのMapに、普通のJSオブジェクトを挿入するのは推薦されていない）
 * Reduxのステートツリー全体をImmutable.JSオブジェクトにする（Map()）
 * dumbコンポーネント以外のところ、Immutable.JSを使う
 * スローなので`toJS()`のメソッドをあまり使わないこと

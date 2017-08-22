@@ -51,7 +51,24 @@ npm start
 * Guaranteed immutability
 * Rich API
   * `List`, `Map`, `Record`, etc.
+  * Has convenient ways to set deeply nested properties
+```
+[SOME_ACTION]: (state, action) => 
+  state
+    .set('loading', false)
+    .setIn(['down', 'we', 'go'], action.payload.id)
+    .setIn(['this', 'is', 'easy'], action.payload.response),
+```
 * Performance
+* Can easily detect changes in state
+```
+oldObjectImmutable !== newObjectImmutable
+```
+
+* Don't need to do unnecessary copies as below:
+```
+newState = Object.assign({}, oldState, { newThing: true });
+```
 
 ## Difficulties of using Immutable.JS
 
@@ -59,17 +76,35 @@ npm start
   * Cannot use standard JS methods to interact with data
   * New syntax
   * No Destructuring or Spread Operators
+```
+myObj.prop1.prop2.prop3
+
+myImmutableMap.getIn([‘prop1’, ‘prop2’, ‘prop3’])
+```
 * Once used, Immutable.JS will spread throughout your codebase
 * Not suitable for small values that change often. Such as:
   * Strings
   * Numbers
   * Bools
-* Difficult to Debug
-* Breaks object references, causing poor performance
+* Difficult to Debug, use the `Immutable.js Object Formatter`:
+https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog
+* Using`toJS()` will cause low performance 
+```
+// AVOID .toJS() in mapStateToProps
+function mapStateToProps(state) {
+  return {
+    todos: state.get('todos').toJS() // Always a new object
+  }
+}
+```
 * Cannot use `combineReducers` if state object is Immutable.js map, must use `redux-immutable`:
 https://www.npmjs.com/package/redux-immutable#usage
 * `react-router-redux` does not work with Immutable.js, need to use a custom reducer:
 https://www.npmjs.com/package/redux-immutable#using-with-react-router-redux
+
+## With all the difficulties, is it worth using Immutable.JS?
+
+Yes!  Problems with mutated state can be very difficult to debug, so it is worth the effort of using Immutable.js in many cases.
 
 ## Best Practices
 
@@ -126,7 +161,6 @@ export default connect(mapStateToProps)(toJS(DumbComponent))
 (For highest perfomance, the `toJS()` method cannot be used as it is slow.  So, in this case Immutable.JS objects are used in the dumb components. However, it is not recommended, and using `toJS()` in the higher order component does not degrade performance much.)
 
 * Use the Immutable Object Formatter Chrome Extension to Aid Debugging
-
 
 ## Useful Info
 
