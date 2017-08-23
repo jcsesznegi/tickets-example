@@ -69,6 +69,7 @@ oldObjectImmutable !== newObjectImmutable
 ```
 newState = Object.assign({}, oldState, { newThing: true });
 ```
+* Can introduce to project slowly, for example by changing the state object to a `Map()` or `Record()`.
 
 ## Difficulties of using Immutable.JS
 
@@ -101,6 +102,7 @@ function mapStateToProps(state) {
 https://www.npmjs.com/package/redux-immutable#usage
 * `react-router-redux` does not work with Immutable.js, need to use a custom reducer:
 https://www.npmjs.com/package/redux-immutable#using-with-react-router-redux
+* Can cause the application to run slower in some cases.
 
 ## With all the difficulties, is it worth using Immutable.JS?
 

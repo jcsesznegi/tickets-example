@@ -68,12 +68,16 @@ oldObjectImmutable !== newObjectImmutable
 ```
 newState = Object.assign({}, oldState, { newThing: true });
 ```
+* ステートオブジェクトを`Map()`また`Record()`だけにすれば、簡単に導入できます。
 
 ## Immutable.JSを使うの弱点
 
 * 習う、利用するのは難しい
   * dataには普通のJSメソッドを使わなくなってしまう
   * シンタックスが違う
+```
+state.getIn(['aListOfRecords', 0, 'someProp'], 7)
+```
   * ES6の`destructuring`、`spread operators`を使わなくなる
 ```
 myObj.prop1.prop2.prop3
@@ -100,6 +104,7 @@ function mapStateToProps(state) {
 https://www.npmjs.com/package/redux-immutable#usage
 * もしstoreはImmutable.JSのオブジェクトにすると、`react-router-redux`を使えなく、 カスタムのreducerをつかなければなりません：
 https://www.npmjs.com/package/redux-immutable#using-with-react-router-redux
+* 全体的にパーフォマンスがよりスローになるケースがある
 
 ## そんなに弱点があればImmutable.JSを使う必要はある！？
 
