@@ -48,10 +48,12 @@ npm start
 
 ## なぜ、Immutable.JSをご利用ですか？
 
-* 値が変わらないこと（イミュータブル）
+* コンポーネントにステートの値を直接に変わらないこと（イミュータブル）
+* イミュータブルので、副作用は防ぐことができる
 * 徹底的なAPIを揃えている
   * `List`、 `Map`、 `Record`、オブジェクトタイプがある
   * オブジェクトの深いネスティングのデータを更新するための便利な機能がある
+
 ```
 [SOME_ACTION]: (state, action) => 
   state
@@ -59,12 +61,14 @@ npm start
     .setIn(['down', 'we', 'go'], action.payload.id)
     .setIn(['this', 'is', 'easy'], action.payload.response),
 ```
-* パフォーマンスが良い
-* ステートの変更が簡単にわかることができます。
+* パフォーマンスが良い。例えば、大きいオブジェクトの場合、Object.assignより100倍のスピードアップできます。
+* 普通のJSに比べると、ステートの変更があるかどうか簡単にわかることができます。（reference equality）
+
 ```
 oldObjectImmutable !== newObjectImmutable
 ```
 * 下記のような不要なコピーが必要なくなります：
+
 ```
 newState = Object.assign({}, oldState, { newThing: true });
 ```
@@ -75,23 +79,26 @@ newState = Object.assign({}, oldState, { newThing: true });
 * 習う、利用するのは難しい
   * dataには普通のJSメソッドを使わなくなってしまう
   * シンタックスが違う
+
 ```
 state.getIn(['aListOfRecords', 0, 'someProp'], 7)
 ```
   * ES6の`destructuring`、`spread operators`を使わなくなる
+
 ```
 myObj.prop1.prop2.prop3
 
 myImmutableMap.getIn([‘prop1’, ‘prop2’, ‘prop3’])
+
 ```
 * Immutable.JSを使うと、コードのどこでも使わないといけなくなります。
 * シンプルな値、または良く変わる値には適当ではありません。例：
   * Strings
   * Numbers
   * Bools
-* デバグするのは難しいので、`Immutable.js Object Formatter`をご利用:
-https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog
+* デバグするのは難しいので、`Immutable.js Object Formatter`をご利用。
 * `toJS()`を利用すれば、よりパーフォマンスが低い
+
 ```
 // mapStateToPropsに.toJS()を使わない
 function mapStateToProps(state) {
@@ -105,6 +112,7 @@ https://www.npmjs.com/package/redux-immutable#usage
 * もしstoreはImmutable.JSのオブジェクトにすると、`react-router-redux`を使えなく、 カスタムのreducerをつかなければなりません：
 https://www.npmjs.com/package/redux-immutable#using-with-react-router-redux
 * 全体的にパーフォマンスがよりスローになるケースがある
+* オブジェクトのシリアライズが難しくなる（transit-jsを使うことができます）
 
 ## そんなに弱点があればImmutable.JSを使う必要はある！？
 
@@ -170,12 +178,17 @@ export default connect(mapStateToProps)(toJS(DumbComponent))
 
 ## 役に立つの情報
 
-
 ReduxにImmutable.JSを利用について
 http://redux.js.org/docs/recipes/UsingImmutableJS.html
 
+Immutable.js, persistent data structures and structural sharing
+https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2
+
 redux-immutable
 https://www.npmjs.com/package/redux-immutable
+
+transit-js（Immutable.JSオブジェクトのシリアライズ）
+https://github.com/cognitect/transit-js
 
 Immutable Object FormatterのChrome拡張機能
 https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog
@@ -183,6 +196,14 @@ https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipib
 React・Reduxのパーフォマンスについての色々
 https://github.com/markerikson/react-redux-links/blob/master/react-performance.md#immutable-data
 
+seamless-immutable（オールターナティブ,普通のJSオブジェクトを使っているようです）
+https://github.com/rtfeldman/seamless-immutable
+
+mori（オールターナティブ,Immutable.JSと似てるぽい）
+http://swannodette.github.io/mori/
+
+イミュータブルライブラリーのリスト
+https://gist.github.com/jlongster/bce43d9be633da55053f
 
 ## TODO
 
