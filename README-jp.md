@@ -1,6 +1,6 @@
 # React・ReduxとImmutableJSについて 
 
-## 最初のインストール
+## 一回目のインストール
 
 1. Reactのインストール
 https://facebook.github.io/react/
@@ -46,7 +46,7 @@ npm install
 npm start
 ```
 
-## なぜ、Immutable.JSをご利用ですか？
+## なぜ、Immutable.JSをご利用ですか？（メリット）
 
 * コンポーネントにステートの値を直接に変わらないこと（イミュータブル）
 * イミュータブルので、副作用は防ぐことができる
@@ -61,7 +61,17 @@ npm start
     .setIn(['down', 'we', 'go'], action.payload.id)
     .setIn(['this', 'is', 'easy'], action.payload.response),
 ```
-* パフォーマンスが良い。例えば、大きいオブジェクトの場合、Object.assignより100倍のスピードアップできます。
+  * 便利、わかりやすいメソッドがある
+
+```
+Immutable.Range(1, Infinity)
+    .skip(1000)
+    .map(n => -n)
+    .filter(n => n % 2 === 0)
+    .take(2)
+    .reduce((r, n) => r * n, 1);
+```
+* イミュータブルですがパフォーマンスが良い。例えば、大きいオブジェクトの場合、Object.assignより100倍のスピードアップできます。
 * 普通のJSに比べると、ステートの変更があるかどうか簡単にわかることができます。（reference equality）
 
 ```
@@ -74,9 +84,10 @@ newState = Object.assign({}, oldState, { newThing: true });
 ```
 * ステートオブジェクトを`Map()`また`Record()`だけにすれば、簡単に導入できます。
 
-## Immutable.JSを使うの弱点
+## Immutable.JSを使うの弱点（デメリット）
 
 * 習う、利用するのは難しい
+  * チーム全体が利用になるので、その常規を決めないといけなくなる
   * dataには普通のJSメソッドを使わなくなってしまう
   * シンタックスが違う
 
@@ -97,28 +108,33 @@ myImmutableMap.getIn([‘prop1’, ‘prop2’, ‘prop3’])
   * Numbers
   * Bools
 * デバグするのは難しいので、`Immutable.js Object Formatter`をご利用。
-* `toJS()`を利用すれば、よりパーフォマンスが低い
-
+* Immutable.JSオブジェクトを普通のJSオブジェクトにするのは`toJS()`メソッドが必要が、そのメソッドはスロー。
+* ReduxのmapStateToPropsに.toJS()を使わない
 ```
-// mapStateToPropsに.toJS()を使わない
 function mapStateToProps(state) {
   return {
     todos: state.get('todos').toJS() // いつも新オブジェクト
   }
 }
 ```
-* `combineReducers`は普通のオブジェクトを期待しているので、ステート全体をImmutable.jsにする(Map()にする)と`combineReducers`を使えなってしまう。 `redux-immutable`を使わなければなりません:
+* `combineReducers`は普通のオブジェクトを期待しているので、ステート全体をImmutable.jsにする(Map()にする)と`combineReducers`を使えなくなってしまう。 `redux-immutable`を使わなければなりません:
 https://www.npmjs.com/package/redux-immutable#usage
 * もしstoreはImmutable.JSのオブジェクトにすると、`react-router-redux`を使えなく、 カスタムのreducerをつかなければなりません：
 https://www.npmjs.com/package/redux-immutable#using-with-react-router-redux
-* 全体的にパーフォマンスがよりスローになるケースがある
-* オブジェクトのシリアライズが難しくなる（transit-jsを使うことができます）
+* 全体的にパーフォマンスがよりスローになるケースがある（特にステートのデータが少ない時）。Reselect等のメモ化を利用すると、再計算がなくなるから、この問題を防ぐことができます。
+* Immutable.JSのオブジェクトのシリアライズが難しくなる（transit-jsを使うことができます）
+* Immutable.JSのドキュメンテーションが未完成し（例が少ない）、ちょっと分かりづらいと思いました。
 
 ## そんなに弱点があればImmutable.JSを使う必要はある！？
 
 Yes! ステートが変更される問題は非常にデバグしにくいので、弱点があってもImmutable.JSを使うのは推薦されています。
 
-## ベストプラクティス（Reduxサイトにより）
+## 普通のJSでイミュータブルできますが
+* しかし、間違って、オブジェクトを変更してしまう（mutate）ことがある
+* 自分ですると、コードがながくなってしまう
+* Immutable.JSよりパフォーマンスがスロー
+
+## Immutable.JSのベストプラクティス（Reduxサイトにより）
 http://redux.js.org/docs/recipes/UsingImmutableJS.html
 
 * Immutable.JSのオブジェクトと普通のJSオブジェクトを混ぜない方が良い（例：Immutable.JSのMapに、普通のJSオブジェクトを挿入するのは推薦されていない）
@@ -172,7 +188,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(toJS(DumbComponent))
 ```
 一番いいパーフォマンスにするため、`toJS()`を使うことができません（スローなので）。その場合、Immutable.JSのオブジェクトを直接にdumbコンポーネントに使います。しかし、Higher Order Components（HOC）を使えば、パフォーマンスはそんなに変わらないので、上記のようにするのは推薦されているようです。
-
 * デバグする時、Immutable Object FormatterのChrome拡張機能を利用すること
 
 
@@ -184,8 +199,17 @@ http://redux.js.org/docs/recipes/UsingImmutableJS.html
 Immutable.js, persistent data structures and structural sharing
 https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2
 
+Introduction to Immutable.js and Functional Programming Concepts
+https://auth0.com/blog/intro-to-immutable-js/
+
 redux-immutable
 https://www.npmjs.com/package/redux-immutable
+
+Reselect
+https://github.com/reactjs/reselect
+
+Computing Derived Data
+http://redux.js.org/docs/recipes/ComputingDerivedData.html
 
 transit-js（Immutable.JSオブジェクトのシリアライズ）
 https://github.com/cognitect/transit-js
